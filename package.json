@@ -6,8 +6,7 @@
     "rollup": "^0.64.0"
   },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup src/main.js -o index.js -f es",
     "test": "node test/test.js",
     "pretest": "npm run build"
   }
