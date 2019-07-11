@@ -12,6 +12,6 @@ function* columns({H, HT}) {
   // [0, 1 ... (HT-2), (HT-1), HT, (HT+1)]
   yield* Array.from(
     {length: HT + 2},
-    (_, i) => ({H: ~H, HT: i})
+    (_, i) => ({H: -H + 1, HT: i})
   )
 }

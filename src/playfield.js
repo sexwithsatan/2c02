@@ -17,11 +17,11 @@ function* playfield(tiles, {
     const PAR = read(name({V, H, VT}) | HT)
     const AR = read(attribute({V, H, VT, HT}))
 
-    yield Object.freeze([
+    yield [
       PAR,
       AR >>> metatile({VT, HT}),
       read(pattern({S, PAR}) | 0b0000 | FV),
       read(pattern({S, PAR}) | 0b1000 | FV)
-    ])
+    ]
   }
 }
