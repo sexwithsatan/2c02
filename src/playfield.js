@@ -8,9 +8,8 @@ export default
 function* playfield(tiles, {
   FV,   // fine vertical scroll
   V,    // vertical name table
-  VT,   // vertical tile index
-  S     // playfield pattern table
-}, [read]) {
+  VT    // vertical tile index
+}, registers, [read]) {
   const g = tiles[Symbol.iterator]()
 
   for (const {H, HT} of g) {
@@ -20,8 +19,8 @@ function* playfield(tiles, {
     yield [
       PAR,
       AR >>> metatile({VT, HT}),
-      read(pattern({S, PAR}) | 0b0000 | FV),
-      read(pattern({S, PAR}) | 0b1000 | FV)
+      read(pattern({...registers, PAR}) | 0b0000 | FV),
+      read(pattern({...registers, PAR}) | 0b1000 | FV)
     ]
   }
 }

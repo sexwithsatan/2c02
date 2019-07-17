@@ -5,11 +5,10 @@ import columns from './raster/columns.js'
 import scanlines from './raster/scanlines.js'
 
 export default
-function* render(registers, [read]) {
-  for (const {V, VT, FV} of scanlines(registers)) {
-    const tiles = columns(registers)
-    const counters = {FV, V, H, VT, HT}
-    const data = playfield(tiles, {...registers, ...counters}, [read])
+function* render({counters, registers}, [read]) {
+  for (const {V, VT, FV} of scanlines(counters)) {
+    const tiles = columns(counters)
+    const data = playfield(tiles, {V, VT, FV}, registers, [read])
     const shifters = buffers(data)
 
     shifters.next()  // Wait until the pipeline is full (i.e., when we have fetched
